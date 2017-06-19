@@ -16,9 +16,9 @@ Para el correcto funcionamiento del ejemplo, es necesario configurar las siguien
 | OAuthConsumerKey | Parámetro de credencial de integración *|
 | OAuthConsumerSecret | Parámetro de credencial de integración * |
 | userCode | Código de usuario al que se le enviará el documento |
-| deviceCode | Código del dispositivo del usuario de definido en la constante anterior al que se enviará la petición |
-| appCodeDevice | Credencial app móvil al que se enviará la petición |
-| urlApiBackend | Endpoint del servicio de viafirma documents a emplear en el ejemplo (Por ejemplo: [https://sandbox.viafirma.com/documents/api/v3/]) |
+| deviceCode | Código del dispositivo del usuario definido en la constante anterior al que se enviará la petición |
+| appCodeDevice | Credencial de la  aplicación móvil al que se enviará la petición |
+| urlApiBackend | Endpoint del servicio de viafirma documents a emplear en la solución (Por ejemplo: [https://sandbox.viafirma.com/documents/api/v3/]) |
 | policyCode | Código de la plantilla del que extraer las políticas |
 
 
