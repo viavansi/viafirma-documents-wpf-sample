@@ -1,9 +1,9 @@
 # viafirma-documents-wpf-sample
 
-Esta solución pretende mostrar de forma básica la integración de un cliente con tecnología c# con el CMR viafirma documents. 
+Esta solución pretende mostrar de forma básica la integración de un cliente con tecnología c# con el CRM viafirma documents. 
 Para ello, se realiza el siguiente flujo:
 
-  - Enviar un documento PDF al CMR
+  - Enviar un documento PDF al CRM
   - Consultar el estado de la petición
   - Descargar el documento firmado una vez concluido el proceso por parte del usuario en su dispositivo
 
