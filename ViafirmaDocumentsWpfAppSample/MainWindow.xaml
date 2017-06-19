@@ -1,0 +1,17 @@
+﻿<Window x:Class="ViafirmaDocumentsWpfAppSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ViafirmaDocumentsWpfAppSample"
+        mc:Ignorable="d"
+        Title="Viafirma documents (ejemplo de integración)" Height="88.315" Width="520" Icon="Assets/documents.ico">
+
+    <Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
+            <Button Content="Enviar PDF" Width="150" Background="#145b94" Margin="5,0" Foreground="White" BorderBrush="#e98400" Height="25" x:Name="ButtonSendPdf" Click="ButtonSendPdf_Click"/>
+            <Button Content="Consultar estado" Width="150" Background="#145b94" IsEnabled="False" Foreground="White" BorderBrush="#e98400" Height="25" x:Name="ButtonStatus" Click="ButtonStatus_Click"/>
+            <Button Content="Recuperar documento firmado" Width="175" IsEnabled="False" Margin="5,0" Background="#145b94" Foreground="White" BorderBrush="#e98400" Height="25" x:Name="ButtonGetSignedPdf" Click="ButtonGetSignedPdf_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
