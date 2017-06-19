@@ -20,6 +20,8 @@ Para el correcto funcionamiento del ejemplo, es necesario configurar las siguien
 | appCodeDevice | Credencial app móvil al que se enviará la petición |
 | urlApiBackend | Endpoint del servicio de viafirma documents a emplear en el ejemplo (Por ejemplo: [https://sandbox.viafirma.com/documents/api/v3/]) |
 | policyCode | Código de la plantilla del que extraer las políticas |
+
+
 *Las credenciales gestionadas por viafirma documents para la integración de servicios esta compuestas por dos datos:
 - OAuth Consumer Key
 - OAuth Consumer Secret
