@@ -5,6 +5,7 @@ Para ello, se realiza el siguiente flujo:
 
   - Enviar un documento PDF al CRM
   - Consultar el estado de la petición
+  - Rechazar la petición de firma
   - Descargar el documento firmado una vez concluido el proceso por parte del usuario en su dispositivo
 
 ### Configuración
