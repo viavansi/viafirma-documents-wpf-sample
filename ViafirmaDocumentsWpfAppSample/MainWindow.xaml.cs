@@ -51,6 +51,7 @@ namespace ViafirmaDocumentsWpfAppSample
             {
                 messageCode = httpResponseMessage.Content.ReadAsStringAsync().Result;
                 ButtonStatus.IsEnabled = true;
+                ButtonReject.IsEnabled = true;
             }
         }
 
@@ -70,6 +71,22 @@ namespace ViafirmaDocumentsWpfAppSample
 
                 if(status.status.Equals("RESPONSED"))
                     ButtonGetSignedPdf.IsEnabled = true;
+            }
+        }
+
+        //
+        // Summary:
+        //     Rechaza la petición de firma del pdf.
+        //
+        private async void ButtonReject_Click(object sender, RoutedEventArgs e)
+        {
+            //Call to service
+            var httpResponseMessage = await PutRejectMessage("messages/reject/" + messageCode,"Rechazado desde cliente WPF");
+            if (httpResponseMessage.IsSuccessStatusCode)
+            {
+                string result = httpResponseMessage.Content.ReadAsStringAsync().Result;
+                DocumentStatus status = JsonConvert.DeserializeObject<DocumentStatus>(result);
+                MessageBox.Show(result);
             }
         }
 
@@ -179,6 +196,40 @@ namespace ViafirmaDocumentsWpfAppSample
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             var httpResponseMessage = await httpClient.PostAsync(urlApi, stringContent);
+
+            return httpResponseMessage;
+        }
+
+        private async Task<HttpResponseMessage> PutRejectMessage(string service, string comment)
+        {
+            string urlApi = urlApiBackend + service;
+
+            OAuthUtil oAuthUtil = new OAuthUtil();
+            string nonce = oAuthUtil.GetNonce();
+            string timeStamp = oAuthUtil.GetTimeStamp();
+
+            string SigBaseStringParams = "comment=" + Uri.EscapeDataString(comment);
+            SigBaseStringParams += "&" + "oauth_consumer_key=" + OAuthConsumerKey;
+            SigBaseStringParams += "&" + "oauth_nonce=" + nonce;
+            SigBaseStringParams += "&" + "oauth_signature_method=HMAC-SHA1";
+            SigBaseStringParams += "&" + "oauth_timestamp=" + timeStamp;
+            SigBaseStringParams += "&" + "oauth_version=1.0";
+            string SigBaseString = "PUT&";
+            SigBaseString += Uri.EscapeDataString(urlApi) + "&" + Uri.EscapeDataString(SigBaseStringParams);
+            SigBaseString = SigBaseString.Replace(" ", "");
+
+            String Signature = oAuthUtil.ComputeSignature(SigBaseString, OAuthConsumerSecret);
+
+            var httpContent = new StringContent("comment=" + comment, Encoding.UTF8);
+            httpContent.Headers.ContentType = MediaTypeWithQualityHeaderValue.Parse("application/x-www-form-urlencoded");
+            string authorizationHeaderParams = "oauth_consumer_key=\"" + OAuthConsumerKey + "\", oauth_nonce=\"" + nonce
+                + "\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"" + Uri.EscapeDataString(Signature) + "\", oauth_timestamp=\"" + timeStamp + "\", oauth_version=\"1.0\"";
+
+            HttpClient httpClient = new HttpClient();
+
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("OAuth", authorizationHeaderParams);
+            var httpResponseMessage = await httpClient.PutAsync(new Uri(urlApi), httpContent);
+            string response = await httpResponseMessage.Content.ReadAsStringAsync();
 
             return httpResponseMessage;
         }
