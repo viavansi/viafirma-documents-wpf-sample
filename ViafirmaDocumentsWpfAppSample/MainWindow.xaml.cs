@@ -20,14 +20,14 @@ namespace ViafirmaDocumentsWpfAppSample
     public partial class MainWindow : Window
     {
         //Datos de configuración
-        private string OAuthConsumerKey = "xxxxx";
-        private string OAuthConsumerSecret = "xxxxx";
-        private string userCode = "xxxxx";
-        private string deviceCode = "xxxxx";
-        private string appCodeDevice = "xxxxx";
+        private string OAuthConsumerKey = "com.viafirma.gruponumero1";
+        private string OAuthConsumerSecret = "xX8FxjUzrzVSrDZz6Q8jPw2s5YjkzHhV";
+        private string userCode = "fgomez";
+        private string deviceCode = "fgomez";
+        private string appCodeDevice = "com.viafirma.documents";
         private string messageCode;
-        private string urlApiBackend = "xxxxx";
-        private string policyCode = "xxxxx";
+        private string urlApiBackend = "https://services.viafirma.com/documents/api/v3/";
+        private string policyCode = "RRHH_CopiaBasica_100";
 
         private MessageModel message;
 
@@ -51,6 +51,7 @@ namespace ViafirmaDocumentsWpfAppSample
             {
                 messageCode = httpResponseMessage.Content.ReadAsStringAsync().Result;
                 ButtonStatus.IsEnabled = true;
+                ButtonMessage.IsEnabled = true;
                 ButtonReject.IsEnabled = true;
             }
         }
@@ -113,6 +114,19 @@ namespace ViafirmaDocumentsWpfAppSample
             }
         }
 
+        private async void ButtonMessage_Click(object sender, RoutedEventArgs e)
+        {
+            //Call to service
+            
+            var httpResponseMessage = await Get("messages/" + messageCode);
+            if (httpResponseMessage.IsSuccessStatusCode)
+            {
+                string result = httpResponseMessage.Content.ReadAsStringAsync().Result;
+                DocumentStatus status = JsonConvert.DeserializeObject<DocumentStatus>(result);
+                MessageBox.Show(result);
+            }
+        }
+
         //
         // Summary:
         //     Modelado del json utilizado en la llamada al servicio
@@ -145,7 +159,7 @@ namespace ViafirmaDocumentsWpfAppSample
         private string ConvertPdfToBase64()
         {
             string fileBase64 = null;
-            string path = System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName) + "\\Assets\\pdf-sample.pdf";
+            string path = System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName) + "\\Assets\\RRHH_CopiaBasica_100.pdf";
 
             //Read file and convert to base64
             Byte[] bytes = System.IO.File.ReadAllBytes(path);

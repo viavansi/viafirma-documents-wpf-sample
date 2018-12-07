@@ -5,16 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ViafirmaDocumentsWpfAppSample"
         mc:Ignorable="d"
-        Title="Viafirma documents (ejemplo de integración)" Height="165.036" Width="591.607" Icon="Assets/documents.ico">
+        Title="Viafirma documents (ejemplo de integración)" Height="235" Width="350" Icon="Assets/documents.ico">
 
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="84,32,84,0">
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
-            <Button Content="Enviar PDF" Width="150" Background="#145b94" Margin="5,0" Foreground="White" BorderBrush="#e98400" Height="25" x:Name="ButtonSendPdf" Click="ButtonSendPdf_Click"/>
-            <Button Content="Consultar estado" Width="150" Background="#145b94" IsEnabled="False" Foreground="White" BorderBrush="#e98400" Height="25" x:Name="ButtonStatus" Click="ButtonStatus_Click"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
-            <Button Content="Rechazar petición de firma" Width="175" Background="#145b94" IsEnabled="False" Foreground="White" BorderBrush="#e98400" Height="25" x:Name="ButtonReject" Click="ButtonReject_Click"/>
-            <Button Content="Recuperar documento firmado" Width="175" IsEnabled="False" Margin="5,0" Background="#145b94" Foreground="White" BorderBrush="#e98400" Height="25" x:Name="ButtonGetSignedPdf" Click="ButtonGetSignedPdf_Click"/>
-        </StackPanel>
+    <StackPanel Orientation="Vertical" Margin="15">
+        <Button Content="Enviar PDF" Width="150" Background="#145b94" Margin="5" Foreground="White" BorderBrush="#e98400" Height="25" x:Name="ButtonSendPdf" Click="ButtonSendPdf_Click"/>
+        <Button Content="Consultar message" Width="150" Background="#145b94" IsEnabled="False" Margin="5" Foreground="White" BorderBrush="#e98400" Height="25" x:Name="ButtonMessage" Click="ButtonMessage_Click"/>
+        <Button Content="Consultar estado" Width="150" Background="#145b94" IsEnabled="False" Margin="5" Foreground="White" BorderBrush="#e98400" Height="25" x:Name="ButtonStatus" Click="ButtonStatus_Click"/>
+        <Button Content="Rechazar petición de firma" Width="175" Background="#145b94" IsEnabled="False" Margin="5" Foreground="White" BorderBrush="#e98400" Height="25" x:Name="ButtonReject" Click="ButtonReject_Click"/>
+        <Button Content="Recuperar documento firmado" Width="175" IsEnabled="False" Margin="5,0" Background="#145b94" Foreground="White" BorderBrush="#e98400" Height="25" x:Name="ButtonGetSignedPdf" Click="ButtonGetSignedPdf_Click"/>
     </StackPanel>
 </Window>
